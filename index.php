@@ -1,38 +1,34 @@
-class Parent {
-  // как перенести сюда методы get и set из дочерних классов
-  // в дочерних классах эти методы роботают норм
-  // если переношу в родительский класс сразу PHP ругается
-  // что я хочу обратиться к приватным свойствам
-}
+class Car {
 
-class A extends Parent {
-
-  private  $a;
-
-  public function get(): string
+  public function get($key): string
   {
-    return $this->a;
+    return $this->{$key};
   }
 
-  public function set(string $value): void
+  public function set(string $key, string $value): void
   {
-    $this->a = value
+    $this->{$key} = value
   }
 
 }
 
-class B extends Parent {
-
-  private  $b;
-
-  public function get(): string
-  {
-    return $this->b;
-  }
-
-  public function set(string $value): void
-  {
-    $this->b = value
-  }
-
+class Mercedes extends Car {
+  private int $a;
+  private int $b;
+  private int $c;
 }
+
+class Lada extends Car {
+  private int $d;
+  private int $e;
+  private int $f;
+}
+
+$mercedes = new Mercedes();
+$mercedes->set('a', 100);
+
+$lada = new Lada();
+$lada->set('d', 200);
+
+echo $mercedes->get('a');
+echo $lada->get('d');
